@@ -10,14 +10,17 @@ class Slider{
 
         [].forEach.call(this.$domCore.children, domModule => this.domModules[domModule.className] = domModule );
 
-        if($slider.id && moduleLoader) moduleLoader[$slider.id] = this.loadModules.bind(this);
+        if($slider.id && moduleLoader) moduleLoader[$slider.id] = {
+            slider: this,
+            load: this.loadModules.bind(this)
+        }
     }
-    loadModules(modules){
+    loadModules(...modules){
         console.log('load modules init');
         if(!modules.length) console.log('0 modules to load');
         else modules.forEach(Module => {
             let moduleName = Module.name.charAt(0).toLowerCase() + Module.name.slice(1);
-
+            console.log('loaded', moduleName);
             this.modules[moduleName] = new Module(this);
         });
     }
@@ -55,3 +58,33 @@ class ArrowChanger{
         }
     }
 }
+
+class AutoSlider{
+    constructor($core){
+        this.start = this.start;
+        this.slides = $core.modules.slides;
+        if(!$core.domModules.autoSlider){
+            console.log('missing autoSlider');
+        }else{
+            console.log('succesfully integrate with dom-autoSlider');
+        }
+    }
+    start(interval){
+        this.heart = setInterval(_=> this.slides.change(1), interval);
+    }
+    stop(){
+        clearInterval(this.heart);
+    }
+
+}
+
+let slidersId = {},
+    sliders = [].map.call(document.getElementsByClassName('slider'), slider => new Slider(slider, slidersId));
+
+slidersId['banner'].load(
+    Slides,
+    ArrowChanger,
+    AutoSlider
+);
+
+slidersId['banner'].slider.modules.autoSlider.start(1500);
