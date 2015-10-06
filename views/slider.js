@@ -22,3 +22,21 @@ class Slider{
         });
     }
 }
+
+class Slides{
+    constructor($core){
+        this.slides = $core.domModules.slides;
+        this.slide = 0;
+        this.change = this.change;
+    }
+    change(val){
+        let $prev = this.slides.children[this.slide],
+            next = this.slide + val,
+            $next = this.slides.children[next];
+        if(next >= 0 && $next){
+            this.slide += val;
+            $prev.style.position = 'absolute';
+            $next.style.position = 'relative';
+        }
+    }
+}
