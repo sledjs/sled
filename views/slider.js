@@ -40,3 +40,18 @@ class Slides{
         }
     }
 }
+
+class ArrowChanger{
+    constructor($core){
+        document.onkeydown =_=> {
+            switch (_.which) {
+                case 37:
+                    $core.modules.slides.change(-1);
+                    break;
+                case 39:
+                    $core.modules.slides.change(1);
+                    break;
+            }
+        }
+    }
+}
