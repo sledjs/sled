@@ -298,8 +298,18 @@ let slidersId = {},
 
 slidersId['banner'].load(
     Slides,
-    ArrowChanger,
-    AutoSlider
+    AutoSlider,
+    Carousel,
+    Touch
 );
 
-slidersId['banner'].slider.modules.autoSlider.start(1500);
+slidersId['objects'].load(
+    Slides,
+    Touch,
+    AutoSlider,
+    ArrowChanger,
+    ArrowButtons,
+    Dots
+);
+
+slidersId['banner'].slider.modules.autoSlider.start(5000);
