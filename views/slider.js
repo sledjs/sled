@@ -220,21 +220,58 @@ class ArrowButtons {
 
 class AutoSlider{
     constructor($core){
+        this.work = false;
+        this.interval = 1000;
+
         this.start = this.start;
+        this.restart = this.restart;
+        this.stop = this.stop;
+
         this.slides = $core.modules.slides;
         if(!$core.domModules.autoSlider){
-            console.log('missing autoSlider');
+            log(`[${$core.id}]`, '[ modules-dom ]','missing autoSlider');
         }else{
-            console.log('succesfully integrate with dom-autoSlider');
+            this.autoSlider = $core.domModules.autoSlider.firstElementChild;
+            log(`[${$core.id}]`, '[ modules-dom ]','succesfully integrate with dom-autoSlider');
         }
     }
     start(interval){
-        this.heart = setInterval(_=> this.slides.change(1), interval);
+        this.restarting = false;
+        log('autoSlider ruszył');
+        if(this.autoSlider) {
+            this.autoSlider.style.transitionDuration = (interval || this.interval) + 'ms';
+            this.autoSlider.style.webkitTransitionDuration = (interval || this.interval) + 'ms';
+            setTimeout(_=>this.autoSlider.style.width = '100%', 10);
+        }
+        this.work = true;
+        this.heart = setInterval(_=> {
+            this.slides.change(1) ? null : this.stop();
+            if(this.autoSlider) {
+                    this.autoSlider.style.webkitTransitionDuration = '0ms';
+                    this.autoSlider.style.transitionDuration = '0ms';
+                    this.autoSlider.style.width = '0%';
+                    setTimeout(_=> {
+                        this.autoSlider.style.transitionDuration = (interval || this.interval) + 'ms';
+                        this.autoSlider.style.webkitTransitionDuration = (interval || this.interval) + 'ms';
+                        this.autoSlider.style.width = '100%';
+                    }, 50);
+            }
+        }, (this.interval = interval || this.interval) - 50);
+    }
+    restart(delay){
+        if(!this.restarting && this.work) {
+            this.restarting = true;
+            this.stop();
+            this.autoSlider.style.width = 0;
+            log(`restart autoLoader ${this.interval + delay}ms `);
+            setTimeout(_ => this.start(this.interval), delay);
+        }
     }
     stop(){
+        log('autoSlider został zatrzymany');
+        this.work = false;
         clearInterval(this.heart);
     }
-
 }
 
 let slidersId = {},
