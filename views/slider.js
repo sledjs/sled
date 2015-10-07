@@ -100,6 +100,11 @@ class ArrowChanger{
                     $core.modules.slides.change(1);
                     break;
             }
+            if((_.which == 37 || _.which == 39) && $core.modules.autoSlider) $core.modules.autoSlider.restart(5000);
+        }
+    }
+}
+
 class Dots{
     constructor($core){
         let domModules = $core.domModules;
