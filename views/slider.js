@@ -149,6 +149,23 @@ class Dots{
         this.lightDot();
     }
 }
+
+class Touch{
+    constructor($core){
+        this.hammer = new Hammer($core.domModules.slides);
+        this.slides = $core.modules.slides;
+        this.autoSlider = $core.modules.autoSlider;
+
+        this.hammer.on('swipe', e =>{
+            if(e.direction == 2) this.slides.change(1);
+            else this.slides.change(-1);
+
+            if(this.autoSlider) this.autoSlider.restart(5000);
+        });
+
+    }
+}
+
 class ArrowButtons {
     constructor($core) {
         if($core.domModules.arrows) {
