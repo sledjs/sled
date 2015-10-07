@@ -7,8 +7,14 @@ class Slider{
         this.$domCore = $slider;
         this.domModules = {};
         this.modules = {};
+        this.id = $slider.id;
 
-        [].forEach.call(this.$domCore.children, domModule => this.domModules[domModule.className] = domModule );
+        this.getModule = this.getModule;
+
+        [].forEach.call(this.$domCore.children, domModule =>{
+            this.domModules[domModule.className] = domModule ;
+            log(`[${this.id}]`, '[modules-dom]', `loaded ${domModule.className}`)
+        });
 
         if($slider.id && moduleLoader) moduleLoader[$slider.id] = {
             slider: this,
@@ -16,11 +22,12 @@ class Slider{
         }
     }
     loadModules(...modules){
-        console.log('load modules init');
-        if(!modules.length) console.log('0 modules to load');
+        log(`[${this.id}]`, 'load modules init');
+        if(!modules.length) log(`[${this.id}]`, '[modules]','0 modules to load');
         else modules.forEach(Module => {
-            let moduleName = Module.name.charAt(0).toLowerCase() + Module.name.slice(1);
-            console.log('loaded', moduleName);
+            let funcName = Module.toString().match(/^function\s*([^\s(]+)/)[1],
+            moduleName = funcName.charAt(0).toLowerCase() + funcName.slice(1);
+            log(`[${this.id}]`, '[modules]' ,'loaded', moduleName);
             this.modules[moduleName] = new Module(this);
         });
     }
