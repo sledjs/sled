@@ -28,18 +28,54 @@ class Slider{
 
 class Slides{
     constructor($core){
-        this.slides = $core.domModules.slides;
+        this.$slides = $core.domModules.slides;
         this.slide = 0;
         this.change = this.change;
+        this.changeTo = this.changeTo;
+        this.changeAcces = true;
+        this.afterChange = can => can;
+
+        this.broadcast = [];
+    }
+    changeTo(which){
+        this.change(which - this.slide);
     }
     change(val){
-        let $prev = this.slides.children[this.slide],
+
+        if(!this.changeAcces) return false;
+        this.changeAcces = false;
+
+        let $prev = this.$slides.children[this.slide],
             next = this.slide + val,
-            $next = this.slides.children[next];
+            $next = this.$slides.children[next],
+            forward =  val > 0 ;
+
         if(next >= 0 && $next){
             this.slide += val;
             $prev.style.position = 'absolute';
+            $prev.style.transform = `translateX(${ forward ? -100 : 100}%)`;
+            $prev.style.webkitTransform = `translateX(${ forward ? -100 : 100}%)`;
+
+            if($prev.previousElementSibling){
+                $prev.previousElementSibling.style.position = 'absolute';
+                $prev.previousElementSibling.style.transform = 'translateX(-100%)';
+                $prev.previousElementSibling.style.webkitTransform = 'translateX(-100%)';
+            }
             $next.style.position = 'relative';
+            $next.style.transform = 'translateX(0)';
+            $next.style.webkitTransform = 'translateX(0)';
+
+            this.broadcast.forEach(_=>_(this.slide));
+
+            setTimeout(_=> this.changeAcces = true, 750);
+            return this.afterChange( true, val );
+        }else {
+            this.changeAcces = true;
+            return this.afterChange( false, val );
+        }
+    }
+}
+
 class Carousel{
     constructor($core){
         this.$slides = $core.domModules.slides;
