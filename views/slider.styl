@@ -75,5 +75,29 @@ i, .dot
     height 100%
     background mainColor
 
+.arrows
+  font-size 1.25em
+  position absolute
+  width 100%
+  height 100%
+  display flex
+  align-items center
+  justify-content space-between
+  i
+    padding .4em
+    cursor pointer
+    position relative
+    z-index 1
+    box-shadow 0 .1em .1em 0 rgba(0, 0, 0, .2)
+    @extend .borderStyle
+    &:active
+      box-shadow 0 0 .1em 0 rgba(0, 0, 0, .2)
+      transform scale(.9)
+    &:first-child
+      left -.75em
+    &:last-child
+      left .75em
+
+
 #banner
   width 100%
