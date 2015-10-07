@@ -31,6 +31,15 @@ class Slider{
             this.modules[moduleName] = new Module(this);
         });
     }
+    getModule(module, dom){
+        let moduleCont = this.modules;
+        if(dom) moduleCont = this.domModules;
+
+        return new Promise((res, rej) => {
+            if(moduleCont[module]) res(moduleCont[module]);
+            else rej(new Error('missing module', this.id));
+        });
+    }
 }
 
 class Slides{
