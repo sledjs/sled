@@ -13,7 +13,11 @@ body
     .slider#objects
         .arrows
             i.fa.fa-angle-left
-        span.right
             i.fa.fa-angle-right
+        .slides
+            -for(var i = 5; --i;)
+                img(src="imgs/#{i}.jpg")
+        .dots
+
     script(src='hammer.min.js')
     script(src='slider.js')
