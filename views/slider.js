@@ -40,7 +40,52 @@ class Slides{
             this.slide += val;
             $prev.style.position = 'absolute';
             $next.style.position = 'relative';
+class Carousel{
+    constructor($core){
+        this.$slides = $core.domModules.slides;
+        this.slides = $core.modules.slides;
+
+        [].forEach.call(this.slides.$slides.children, slide => slide.style.position = 'absolute');
+        this.slides.change(1);
+
+
+        if(this.$slides.children.length == 2){
+            let slide1 = this.$slides.children[0].cloneNode(true),
+                slide2 = this.$slides.children[1].cloneNode(true);
+            slide1.style.transform ='translateX(100%)';
+            slide1.style.webkitTransform ='translateX(100%)';
+            slide1.style.position = 'absolute';
+            slide2.style.transform ='translateX(100%)';
+            slide2.style.webkitTransform ='translateX(100%)';
+            slide2.style.position = 'absolute';
+            this.$slides.appendChild(slide1);
+            this.$slides.appendChild(slide2);
         }
+
+        let autoSlider = $core.modules.autoSlider;
+        if(autoSlider) this.autoSlider = autoSlider;
+
+        this.slides.afterChange = function(can, val){
+
+            let slides = this.$slides.children;
+
+            if(val > 0 && this.slides.slide > 1) {
+                slides[0].style.transform = 'translate(100%)';
+                slides[0].style.transform = 'translate(100%)';
+                this.$slides.insertBefore(slides[0], slides[slides.length]);
+                this.slides.slide--;
+            }else if(val < 0){
+                slides[slides.length - 1].style.transform = 'translate(-100%)';
+                slides[slides.length - 1].style.webkitTransform = 'translate(-100%)';
+                this.$slides.insertBefore(slides[slides.length - 1], slides[0]);
+                this.slides.slide++;
+            }
+
+            //this.slides.change(1);
+            //if(autoSlider.work) autoSlider.restart();
+            return can;
+        }.bind(this);
+
     }
 }
 
