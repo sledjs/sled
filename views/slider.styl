@@ -58,8 +58,9 @@ i, .dot
     cursor pointer
     overflow hidden
     position relative
-    img
+    .slide
       position absolute
+      top 0
       left 0
       width 100%
       z-index -2
@@ -100,10 +101,23 @@ i, .dot
     &:last-child
       left .75em
 
+.dualView
+  .slide
+    width 50%
 
 #banner
-  width 100%  width 100%
+  width 100%
+
+.fas
+  flex-grow 1
+  height 100%
+  margin 0 .25em
+  border .1em solid #777
 
 #objects
   margin auto
   width 40em
+  .slides
+    .slide
+      display flex
+      height 20em

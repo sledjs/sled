@@ -2,7 +2,11 @@
 
 let mainColor = "#EE3326";
 
-var log = (...logs) => console.log(`[${new Date().toLocaleTimeString()}]` ,...logs);
+var log = (...logs) => console.log(`[${new Date().toLocaleTimeString()}]` ,...logs),
+    touch = (...$elems) => $elems.forEach($elem => $elem ? $elem.style.setTransform =_=> {
+        $elem.style.transform = _;
+        $elem.style.webkitTransform = _;
+    } : null);
 
 
 class Slider{
@@ -54,6 +58,8 @@ class Slides{
         this.changeAcces = true;
         this.afterChange = can => can;
 
+        touch(this.$slides);
+
         this.broadcast = [];
     }
     changeTo(which){
@@ -69,20 +75,20 @@ class Slides{
             $next = this.$slides.children[next],
             forward =  val > 0 ;
 
+        touch($prev, $next);
+
         if(next >= 0 && $next){
             this.slide += val;
             $prev.style.position = 'absolute';
-            $prev.style.transform = `translateX(${ forward ? -100 : 100}%)`;
-            $prev.style.webkitTransform = `translateX(${ forward ? -100 : 100}%)`;
+            $prev.style.setTransform(`translateX(${ forward ? -100 : 100}%)`);
 
             if($prev.previousElementSibling){
+                touch($prev.previousElementSibling)
                 $prev.previousElementSibling.style.position = 'absolute';
-                $prev.previousElementSibling.style.transform = 'translateX(-100%)';
-                $prev.previousElementSibling.style.webkitTransform = 'translateX(-100%)';
+                $prev.previousElementSibling.style.setTransform('translateX(-100%)');
             }
             $next.style.position = 'relative';
-            $next.style.transform = 'translateX(0)';
-            $next.style.webkitTransform = 'translateX(0)';
+            $next.style.setTransform('translateX(0)');
 
             this.broadcast.forEach(_=>_(this.slide));
 
@@ -103,15 +109,13 @@ class Carousel{
         [].forEach.call(this.slides.$slides.children, slide => slide.style.position = 'absolute');
         this.slides.change(1);
 
-
         if(this.$slides.children.length == 2){
             let slide1 = this.$slides.children[0].cloneNode(true),
                 slide2 = this.$slides.children[1].cloneNode(true);
-            slide1.style.transform ='translateX(100%)';
-            slide1.style.webkitTransform ='translateX(100%)';
+            touch(slide1, slide2);
+            slide1.style.setTransform('translateX(100%)');
             slide1.style.position = 'absolute';
-            slide2.style.transform ='translateX(100%)';
-            slide2.style.webkitTransform ='translateX(100%)';
+            slide2.style.setTransform('translateX(100%)');
             slide2.style.position = 'absolute';
             this.$slides.appendChild(slide1);
             this.$slides.appendChild(slide2);
@@ -125,13 +129,14 @@ class Carousel{
             let slides = this.$slides.children;
 
             if(val > 0 && this.slides.slide > 1) {
-                slides[0].style.transform = 'translate(100%)';
-                slides[0].style.transform = 'translate(100%)';
+                touch(slides[0]);
+                slides[0].style.setTransform('translate(100%)');
+                slides[0].style.setTransform('translate(100%)');
                 this.$slides.insertBefore(slides[0], slides[slides.length]);
                 this.slides.slide--;
             }else if(val < 0){
-                slides[slides.length - 1].style.transform = 'translate(-100%)';
-                slides[slides.length - 1].style.webkitTransform = 'translate(-100%)';
+                touch(slides[slides.length - 1]);
+                slides[slides.length - 1].style.setTransform('translate(-100%)');
                 this.$slides.insertBefore(slides[slides.length - 1], slides[0]);
                 this.slides.slide++;
             }
@@ -202,6 +207,16 @@ class Dots{
         });
 
         this.lightDot();
+    }
+}
+
+class dualView{
+    constructor($core){
+        let $slides = $core.domModules.slides;
+
+        console.log($slides.children);
+
+       // $slides.className = 'dualView';
     }
 }
 
@@ -309,7 +324,8 @@ slidersId['objects'].load(
     AutoSlider,
     ArrowChanger,
     ArrowButtons,
-    Dots
+    Dots,
+    dualView
 );
 
 slidersId['banner'].slider.modules.autoSlider.start(5000);

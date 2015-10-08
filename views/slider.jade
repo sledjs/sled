@@ -8,7 +8,7 @@ body
             .value
         .slides
             -for(var i = 5; --i;)
-                img(src="imgs/#{i}.jpg")
+                img(src="imgs/#{i}.jpg").slide
 
     .slider#objects
         .arrows
@@ -16,7 +16,11 @@ body
             i.fa.fa-angle-right
         .slides
             -for(var i = 5; --i;)
-                img(src="imgs/#{i}.jpg")
+                .slide
+                    .fas
+                    .fas
+            .slide
+                .fas
         .dots
 
     script(src='hammer.min.js')
