@@ -333,13 +333,13 @@ class AutoSlider{
         if(!this.restarting && this.work) {
             this.restarting = true;
             this.stop();
-            this.autoSlider.style.width = 0;
             log(`restart autoLoader ${this.interval + delay}ms `);
             setTimeout(_ => this.start(this.interval), delay);
         }
     }
     stop(){
         log('autoSlider został zatrzymany');
+        this.autoSlider.style.width = 0;
         this.work = false;
         clearInterval(this.heart);
     }
@@ -358,7 +358,6 @@ slidersId['banner'].load(
 slidersId['objects'].load(
     Slides,
     Touch,
-    AutoSlider,
     ArrowChanger,
     ArrowButtons,
     Dots,
