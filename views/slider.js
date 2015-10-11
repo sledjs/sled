@@ -3,10 +3,10 @@
 let mainColor = "#EE3326";
 
 var log = (...logs) => console.log(`[${new Date().toLocaleTimeString()}]` ,...logs),
-    touch = (...$elems) => $elems.forEach($elem => $elem ? $elem.style.setTransform =_=> {
-        $elem.style.transform = _;
-        $elem.style.webkitTransform = _;
-    } : null);
+    setTransform = ($elem, attr) => {
+        $elem.transform = attr;
+        $elem.webkitTransform = attr;
+    };
 
 
 class Slider{
@@ -58,8 +58,6 @@ class Slides{
         this.changeAcces = true;
         this.afterChange = can => can;
 
-        touch(this.$slides);
-
         this.broadcast = [];
     }
     changeTo(which){
@@ -74,9 +72,6 @@ class Slides{
             next = this.slide + val,
             $next = this.$slides.children[next],
             forward =  val > 0 ;
-
-        touch($prev, $next);
-
         if(next >= 0 && $next){
             this.slide += val;
             if($prev){
@@ -88,8 +83,9 @@ class Slides{
                     setTransform($prev.previousElementSibling.style, 'translateX(-100%)');
                 }
             }
+
             $next.style.position = 'relative';
-            $next.style.setTransform('translateX(0)');
+            setTransform($next.style, 'translateX(0)');
 
             this.broadcast.forEach(_=>_(this.slide));
 
@@ -113,10 +109,9 @@ class Carousel{
         if(this.$slides.children.length == 2){
             let slide1 = this.$slides.children[0].cloneNode(true),
                 slide2 = this.$slides.children[1].cloneNode(true);
-            touch(slide1, slide2);
-            slide1.style.setTransform('translateX(100%)');
+            setTransform(slide1.style, 'translateX(100%)');
             slide1.style.position = 'absolute';
-            slide2.style.setTransform('translateX(100%)');
+            setTransform(slide2.style, 'translateX(100%)');
             slide2.style.position = 'absolute';
             this.$slides.appendChild(slide1);
             this.$slides.appendChild(slide2);
@@ -130,14 +125,12 @@ class Carousel{
             let slides = this.$slides.children;
 
             if(val > 0 && this.slides.slide > 1) {
-                touch(slides[0]);
-                slides[0].style.setTransform('translate(100%)');
-                slides[0].style.setTransform('translate(100%)');
+                setTransform(slides[0].style, 'translate(100%)');
+                setTransform(slides[0].style, 'translate(100%)');
                 this.$slides.insertBefore(slides[0], slides[slides.length]);
                 this.slides.slide--;
             }else if(val < 0){
-                touch(slides[slides.length - 1]);
-                slides[slides.length - 1].style.setTransform('translate(-100%)');
+                setTransform(slides[slides.length - 1].style, 'translate(-100%)');
                 this.$slides.insertBefore(slides[slides.length - 1], slides[0]);
                 this.slides.slide++;
             }
@@ -204,7 +197,6 @@ class Dots{
         $dots.forEach( ($dot, id) => {
             $dot.onclick =_=> this.slides.changeTo(id);
             this.$dots.appendChild($dot)
-
         });
 
         this.lightDot();
