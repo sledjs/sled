@@ -7,7 +7,7 @@ body
         .autoSlider
             .value
         .slides
-            -for(var i = 5; --i;)
+            -for(var i = 7; --i;)
                 img(src="imgs/#{i}.jpg").slide
 
     .slider#objects
@@ -15,12 +15,8 @@ body
             i.fa.fa-angle-left
             i.fa.fa-angle-right
         .slides
-            -for(var i = 5; --i;)
-                .slide
-                    .fas
-                    .fas
-            .slide
-                .fas
+            -for(var i = 7; --i;)
+                img(src="imgs/#{i}.jpg").slide
         .dots
 
     script(src='hammer.min.js')
