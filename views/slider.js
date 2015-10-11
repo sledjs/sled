@@ -79,13 +79,14 @@ class Slides{
 
         if(next >= 0 && $next){
             this.slide += val;
-            $prev.style.position = 'absolute';
-            $prev.style.setTransform(`translateX(${ forward ? -100 : 100}%)`);
+            if($prev){
+                $prev.style.position = 'absolute';
+                setTransform($prev.style, `translateX(${ forward ? -100 : 100}%)`);
 
-            if($prev.previousElementSibling){
-                touch($prev.previousElementSibling)
-                $prev.previousElementSibling.style.position = 'absolute';
-                $prev.previousElementSibling.style.setTransform('translateX(-100%)');
+                if($prev.previousElementSibling){
+                    $prev.previousElementSibling.style.position = 'absolute';
+                    setTransform($prev.previousElementSibling.style, 'translateX(-100%)');
+                }
             }
             $next.style.position = 'relative';
             $next.style.setTransform('translateX(0)');
