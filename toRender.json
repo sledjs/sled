@@ -1,0 +1,5 @@
+[
+  ["jade", "views/slider.jade", "public/slider.html"],
+  ["stylus", "views/slider.styl", "public/slider.css"],
+  ["babel", "views/slider.js", "public/slider.js"]
+]
