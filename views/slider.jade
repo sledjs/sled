@@ -21,3 +21,21 @@ body
 
     script(src='hammer.min.js')
     script(src='slider.js')
+    script.
+        slidersId['banner'].load(
+            Slides,
+            AutoSlider,
+            Carousel,
+            Touch
+        );
+
+        slidersId['objects'].load(
+            Slides,
+            Touch,
+            ArrowChanger,
+            ArrowButtons,
+            Dots,
+            dualView
+        );
+
+        slidersId['banner'].slider.modules.autoSlider.start(5000);

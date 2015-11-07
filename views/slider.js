@@ -415,4 +415,4 @@ slidersId['objects'].load(
     dualView
 );
 
-slidersId['banner'].slider.modules.autoSlider.start(5000);
+slidersId['banner'].slider.modules.autoSlider.start(5000);    sliders = [].map.call(document.getElementsByClassName('slider'), slider => new Slider(slider, slidersId));
