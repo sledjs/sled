@@ -398,21 +398,3 @@ class AutoSlider{
 
 let slidersId = {},
     sliders = [].map.call(document.getElementsByClassName('slider'), slider => new Slider(slider, slidersId));
-
-slidersId['banner'].load(
-    Slides,
-    AutoSlider,
-    Carousel,
-    Touch
-);
-
-slidersId['objects'].load(
-    Slides,
-    Touch,
-    ArrowChanger,
-    ArrowButtons,
-    Dots,
-    dualView
-);
-
-slidersId['banner'].slider.modules.autoSlider.start(5000);    sliders = [].map.call(document.getElementsByClassName('slider'), slider => new Slider(slider, slidersId));
