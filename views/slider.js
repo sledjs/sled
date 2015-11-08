@@ -60,6 +60,25 @@ class Slides{
 
         this.broadcast = [];
     }
+    sort(next){
+        [].forEach.call(this.$slides.children, (slide, i) =>{
+
+            console.log(next, this.$slides.children[next])
+
+            if(i == next) return false;
+
+            if(i > this.slide) {
+                slide.style.transition = '0s';
+                setTransform(slide.style, 'translateX(100%)');
+            }
+            else if(i < this.slide) {
+                slide.style.transition = '0s';
+                setTransform(slide.style, 'translateX(-100%)');
+            }
+
+            setTimeout(_=> slide.style.transition = null, 100);
+        });
+    }
     changeTo(which){
         this.change(which - this.slide);
     }
@@ -68,10 +87,12 @@ class Slides{
         if(!this.changeAcces) return false;
         this.changeAcces = false;
 
-        let $prev = this.$slides.children[this.slide],
+        let prev = this.slide,
+            $prev = this.$slides.children[prev],
             next = this.slide + val,
             $next = this.$slides.children[next],
             forward =  val > 0 ;
+
         if(next >= 0 && $next){
             this.slide += val;
             if($prev){
@@ -90,6 +111,9 @@ class Slides{
             this.broadcast.forEach(_=>_(this.slide));
 
             setTimeout(_=> this.changeAcces = true, 750);
+
+            this.sort(prev);
+
             return this.afterChange( true, val );
         }else {
             this.changeAcces = true;
