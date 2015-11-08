@@ -263,7 +263,8 @@ class dualView{
         this.slides.slide = 0;
         $slides.className = 'slides';
         $slides.children[0].style.position = 'relative';
-        this.dots.fillDots();
+        if(this.dots)
+            this.dots.fillDots();
     }
     dualView(){
         let $slides = this.$slides,
@@ -291,7 +292,8 @@ class dualView{
 
         this.slides.slide = 0;
         $slides.children[0].style.position = 'relative';
-        this.dots.fillDots();
+        if(this.dots)
+            this.dots.fillDots();
     }
 }
 
