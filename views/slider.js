@@ -127,7 +127,7 @@ class Carousel{
         this.$slides = $core.domModules.slides;
         this.slides = $core.modules.slides;
 
-        if(this.slides.length > 1) {
+        if(this.$slides.children.length > 1) {
             [].forEach.call(this.slides.$slides.children, slide => slide.style.position = 'absolute');
             this.slides.change(1);
 
