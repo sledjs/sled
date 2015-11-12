@@ -59,8 +59,6 @@ class Slides{
     sort(next){
         [].forEach.call(this.$slides.children, (slide, i) =>{
 
-            console.log(next, this.$slides.children[next])
-
             if(i == next) return false;
 
             if(i > this.slide) {
