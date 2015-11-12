@@ -408,7 +408,8 @@ class AutoSlider{
     }
     stop(){
         log('autoSlider został zatrzymany');
-        this.autoSlider.style.width = 0;
+        if(this.autoSlider)
+            this.autoSlider.style.width = 0;
         this.work = false;
         clearInterval(this.heart);
     }
