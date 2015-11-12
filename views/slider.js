@@ -386,7 +386,7 @@ class AutoSlider{
             }
             this.work = true;
             this.heart = setInterval(_=> {
-                this.slides.change(1) ? null : this.stop();
+                !this.slides.change(1) ? this.stop() : null;
                 if (this.autoSlider) {
                     this.autoSlider.style.webkitTransitionDuration = '0ms';
                     this.autoSlider.style.transitionDuration = '0ms';
