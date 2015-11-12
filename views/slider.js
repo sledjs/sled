@@ -16,8 +16,6 @@ class Slider{
         this.modules = {};
         this.id = $slider.id;
 
-        this.getModule = this.getModule;
-
         [].forEach.call(this.$domCore.children, domModule =>{
             this.domModules[domModule.className] = domModule ;
             log(`[${this.id}]`, '[modules-dom]', `loaded ${domModule.className}`)
@@ -53,8 +51,6 @@ class Slides{
     constructor($core){
         this.$slides = $core.domModules.slides;
         this.slide = 0;
-        this.change = this.change;
-        this.changeTo = this.changeTo;
         this.changeAcces = true;
         this.afterChange = can => can;
 
@@ -370,10 +366,6 @@ class AutoSlider{
     constructor($core){
         this.work = false;
         this.interval = 1000;
-
-        this.start = this.start;
-        this.restart = this.restart;
-        this.stop = this.stop;
 
         this.slides = $core.modules.slides;
         if(!$core.domModules.autoSlider){
