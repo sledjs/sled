@@ -1,43 +1,46 @@
-export default class Dots{
-    constructor($core){
-        let domModules = $core.domModules;
+export default class Dots {
+    constructor($core) {
+      let domModules = $core.domModules;
 
-        if(domModules.dots){
-            [this.$dots, this.slides] = [domModules.dots, $core.modules.slides];
+      if (domModules.dots) {
+        [this.$dots, this.slides] = [domModules.dots, $core.modules.slides];
 
-            this.slides.broadcast.push( _=> this.lightDot(_) );
+        this.slides.broadcast.push(_=> this.lightDot(_));
 
-            this.fillDots();
-        }
+        this.fillDots();
+      }
     }
-    makeDot(){
-        let dot = document.createElement('div');
-        dot.className = 'dot';
-        this.$dot = dot;
+
+    makeDot() {
+      let dot = document.createElement('div');
+      dot.className = 'dot';
+      this.$dot = dot;
     }
-    lightDot(which){
-        let id = which || this.slides.slide,
-            $dots = this.$dots.children;
 
-        if(this.$prevDot != undefined) $dots[this.$prevDot].style.background = '#eee';
+    lightDot(which) {
+      let id = which || this.slides.slide;
+      let $dots = this.$dots.children;
 
-        $dots[id].style.background = mainColor;
-        this.$prevDot = id;
+      if (this.$prevDot != undefined) $dots[this.$prevDot].style.background = '#eee';
+
+      $dots[id].style.background = mainColor;
+      this.$prevDot = id;
     }
-    fillDots(){
-        let dotsId = this.slides.$slides.children.length,
-            $dots = [];
 
-        this.$dots.innerHTML = '';
-        if(!this.$dot) this.makeDot();
+    fillDots() {
+      let dotsId = this.slides.$slides.children.length;
+      let $dots = [];
 
-        while(dotsId--) $dots.push(this.$dot.cloneNode());
+      this.$dots.innerHTML = '';
+      if (!this.$dot) this.makeDot();
 
-        $dots.forEach( ($dot, id) => {
-            $dot.onclick =_=> this.slides.changeTo(id);
-            this.$dots.appendChild($dot)
-        });
+      while (dotsId--) $dots.push(this.$dot.cloneNode());
 
-        this.lightDot();
+      $dots.forEach(($dot, id) => {
+        $dot.onclick = _=> this.slides.changeTo(id);
+        this.$dots.appendChild($dot);
+      });
+
+      this.lightDot();
     }
 }

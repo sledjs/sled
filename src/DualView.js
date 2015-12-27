@@ -1,67 +1,69 @@
-export default class dualView{
-    constructor($core){
-        this.dots = $core.modules.dots;
-        this.slides = $core.modules.slides;
-        this.$slides = this.slides.$slides;
+export default class dualView {
+    constructor($core) {
+      this.dots = $core.modules.dots;
+      this.slides = $core.modules.slides;
+      this.$slides = this.slides.$slides;
 
-        this.slide = document.createElement('div');
-        this.slide.className = 'slide';
-        this.slide.style.position = 'absolute';
+      this.slide = document.createElement('div');
+      this.slide.className = 'slide';
+      this.slide.style.position = 'absolute';
 
-        this.mq = window.matchMedia('(min-width: 800px)');
+      this.mq = window.matchMedia('(min-width: 800px)');
 
-        this.mq.addListener( mq => mq.matches ? this.dualView() : this.oneView() );
-        this.mq.matches ? this.dualView() : null;
+      this.mq.addListener(mq => mq.matches ? this.dualView() : this.oneView());
+      this.mq.matches ? this.dualView() : null;
     }
-    oneView(){
-        let $slides = this.$slides,
-            arr = [];
 
-        [].forEach.call( $slides.getElementsByClassName('slide'), slide => arr.push(slide));
+    oneView() {
+      let $slides = this.$slides;
+      let arr = [];
 
-        [].forEach.call($slides.children, $slide => {
-            $slides.appendChild($slide.children[0]);
-            $slides.appendChild($slide.children[0]);
-        });
-        arr.forEach( _=>_.remove() );
-        [].forEach.call($slides.children, $slide => {
-            $slide.className = 'slide';
-            $slide.style.position = 'absolute';
-        });
+      [].forEach.call($slides.getElementsByClassName('slide'), slide => arr.push(slide));
 
-        this.slides.slide = 0;
-        $slides.className = 'slides';
-        $slides.children[0].style.position = 'relative';
-        if(this.dots)
-            this.dots.fillDots();
+      [].forEach.call($slides.children, $slide => {
+        $slides.appendChild($slide.children[0]);
+        $slides.appendChild($slide.children[0]);
+      });
+      arr.forEach(_=>_.remove());
+      [].forEach.call($slides.children, $slide => {
+        $slide.className = 'slide';
+        $slide.style.position = 'absolute';
+      });
+
+      this.slides.slide = 0;
+      $slides.className = 'slides';
+      $slides.children[0].style.position = 'relative';
+      if (this.dots)
+          this.dots.fillDots();
     }
-    dualView(){
-        let $slides = this.$slides,
-            arr = [],
-            prev;
 
-        $slides.className += ' dualView';
+    dualView() {
+      let $slides = this.$slides;
+      let arr = [];
+      let prev;
 
-        [].forEach.call($slides.children, $slide => arr.push($slide) );
+      $slides.className += ' dualView';
 
-        arr.forEach(($slide, i) => {
-            $slide.className = '';
-            $slide.style.position = 'relative';
+      [].forEach.call($slides.children, $slide => arr.push($slide));
 
-            if(i % 2 == 0){
-                let slid = this.slide.cloneNode(true);
+      arr.forEach(($slide, i) => {
+        $slide.className = '';
+        $slide.style.position = 'relative';
 
-                prev = slid;
-                slid.appendChild($slide);
-                $slides.appendChild(slid);
-            }else{
-                prev.appendChild($slide);
-            }
-        });
+        if (i % 2 == 0) {
+          let slid = this.slide.cloneNode(true);
 
-        this.slides.slide = 0;
-        $slides.children[0].style.position = 'relative';
-        if(this.dots)
-            this.dots.fillDots();
+          prev = slid;
+          slid.appendChild($slide);
+          $slides.appendChild(slid);
+        }else {
+          prev.appendChild($slide);
+        }
+      });
+
+      this.slides.slide = 0;
+      $slides.children[0].style.position = 'relative';
+      if (this.dots)
+          this.dots.fillDots();
     }
 }
