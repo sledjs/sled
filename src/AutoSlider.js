@@ -1,16 +1,16 @@
 export default class AutoSlider {
-    constructor($core) {
-      this.work = false;
-      this.interval = 1000;
+  constructor($core) {
+    this.work = false;
+    this.interval = 1000;
 
-      this.slides = $core.modules.slides;
-      if (!$core.domModules.autoSlider) {
-        log(`[${$core.id}]`, '[ modules-dom ]', 'missing autoSlider');
-      }else {
-        this.autoSlider = $core.domModules.autoSlider.firstElementChild;
-        log(`[${$core.id}]`, '[ modules-dom ]', 'succesfully integrate with dom-autoSlider');
-      }
+    this.slides = $core.modules.slides;
+    if (!$core.domModules.autoSlider) {
+      log(`[${$core.id}]`, '[ modules-dom ]', 'missing autoSlider');
+    }else {
+      this.autoSlider = $core.domModules.autoSlider.firstElementChild;
+      log(`[${$core.id}]`, '[ modules-dom ]', 'succesfully integrate with dom-autoSlider');
     }
+  }
 
   start(interval) {
     if (this.slides.$slides.children.length > 1) {
@@ -42,20 +42,20 @@ export default class AutoSlider {
     }
   }
 
-    restart(delay) {
-      if (!this.restarting && this.work) {
-        this.restarting = true;
-        this.stop();
-        log(`restart autoLoader ${this.interval + delay}ms `);
-        setTimeout(_ => this.start(this.interval), delay);
-      }
+  restart(delay) {
+    if (!this.restarting && this.work) {
+      this.restarting = true;
+      this.stop();
+      log(`restart autoLoader ${this.interval + delay}ms `);
+      setTimeout(_ => this.start(this.interval), delay);
     }
+  }
 
-    stop() {
-      log('autoSlider został zatrzymany');
-      if (this.autoSlider)
-          this.autoSlider.style.width = 0;
-      this.work = false;
-      clearInterval(this.heart);
-    }
+  stop() {
+    log('autoSlider został zatrzymany');
+    if (this.autoSlider)
+        this.autoSlider.style.width = 0;
+    this.work = false;
+    clearInterval(this.heart);
+  }
 }
