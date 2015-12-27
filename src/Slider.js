@@ -27,6 +27,8 @@ export default class Slider {
       log(`[${this.id}]`, '[modules]', 'loaded', moduleName);
       this.modules[moduleName] = new Module(this);
     });
+
+    return new Promise(res => res(this));
   }
 
   getModule(module, dom) {
