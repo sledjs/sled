@@ -1,0 +1,15 @@
+{
+  "name": "sled",
+  "version": "0.1.0",
+  "description": "slide smooth like sled upon 45 degress hill",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/rascada/slider.git"
+  },
+  "author": "Damian Martyniak",
+  "license": "UNLICENSED",
+  "homepage": "https://bitbucket.org/rascada/slider#readme",
+  "dependencies": {
+    "hammerjs": "^2.0.4"
+  }
+}
