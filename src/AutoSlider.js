@@ -12,32 +12,35 @@ export default class AutoSlider {
       }
     }
 
-    start(interval) {
-      if (this.slides.$slides.children.length > 1) {
-        this.restarting = false;
-        log('autoSlider ruszył');
-        if (this.autoSlider) {
-          this.autoSlider.style.transitionDuration = (interval || this.interval) + 'ms';
-          this.autoSlider.style.webkitTransitionDuration = (interval || this.interval) + 'ms';
-          setTimeout(_=>this.autoSlider.style.width = '100%', 10);
-        }
+  start(interval) {
+    if (this.slides.$slides.children.length > 1) {
+      this.restarting = false;
+      log('autoSlider ruszył');
 
-        this.work = true;
-        this.heart = setInterval(_=> {
-          !this.slides.change(1) ? this.stop() : null;
-          if (this.autoSlider) {
+      if (this.autoSlider) {
+        this.autoSlider.style.transitionDuration = (interval || this.interval) + 'ms';
+        this.autoSlider.style.webkitTransitionDuration = (interval || this.interval) + 'ms';
+        setTimeout(_=>this.autoSlider.style.width = '100%', 10);
+      }
+
+      this.work = true;
+      this.heart = setInterval(_=> {
+        !this.slides.change(1) ? this.stop() : null;
+        if (this.autoSlider) {
+          new Promise(end => {
             this.autoSlider.style.webkitTransitionDuration = '0ms';
             this.autoSlider.style.transitionDuration = '0ms';
-            this.autoSlider.style.width = '0%';
-            setTimeout(_=> {
-              this.autoSlider.style.transitionDuration = (interval || this.interval) + 'ms';
-              this.autoSlider.style.webkitTransitionDuration = (interval || this.interval) + 'ms';
-              this.autoSlider.style.width = '100%';
-            }, 50);
-          }
-        }, (this.interval = interval || this.interval) - 50);
-      }
+            this.autoSlider.style.width = '0';
+            setTimeout(end, 25);
+          }).then(_=> {
+            this.autoSlider.style.transitionDuration = (interval || this.interval) + 'ms';
+            this.autoSlider.style.webkitTransitionDuration = (interval || this.interval) + 'ms';
+            this.autoSlider.style.width = '100%';
+          });
+        }
+      }, (this.interval = interval || this.interval) + 25);
     }
+  }
 
     restart(delay) {
       if (!this.restarting && this.work) {
