@@ -2,7 +2,7 @@ import log from './log.js';
 
 export default class Slider {
 
-  constructor($slider, moduleLoader) {
+  constructor($slider) {
     this.$domCore = $slider;
     this.domModules = {};
     this.modules = {};
@@ -12,11 +12,6 @@ export default class Slider {
       this.domModules[domModule.className] = domModule;
       log(`[${this.id}]`, '[modules-dom]', `loaded ${domModule.className}`);
     });
-
-    if ($slider.id && moduleLoader) moduleLoader[$slider.id] = {
-      slider: this,
-      load: this.loadModules.bind(this),
-    };
   }
 
   loadModules(...modules) {
