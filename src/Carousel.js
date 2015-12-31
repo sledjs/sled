@@ -1,3 +1,5 @@
+import setTransform from './setTransform';
+
 export default class Carousel {
   constructor($core) {
     this.$slides = $core.domModules.slides;

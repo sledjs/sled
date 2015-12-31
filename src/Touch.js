@@ -1,3 +1,5 @@
+import Hammer from 'hammerjs';
+
 export default class Touch {
   constructor($core) {
     this.hammer = new Hammer($core.domModules.slides);

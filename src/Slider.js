@@ -1,3 +1,5 @@
+import log from './log.js';
+
 export default class Slider {
 
   constructor($slider, moduleLoader) {

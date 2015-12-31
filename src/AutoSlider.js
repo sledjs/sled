@@ -1,3 +1,5 @@
+import log from './log';
+
 export default class AutoSlider {
   constructor($core) {
     this.work = false;

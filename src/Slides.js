@@ -1,3 +1,4 @@
+import setTransform from './setTransform';
 
 export default class Slides {
   constructor($core) {
