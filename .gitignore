@@ -1,5 +1,7 @@
+node_modules
 .idea/
 *.cfg
+
 public/*.*
 old/
 imgs/*
