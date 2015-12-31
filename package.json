@@ -1,6 +1,6 @@
 {
   "name": "sled",
-  "version": "0.1.0",
+  "version": "0.1.0-beta",
   "description": "slide smooth like sled upon 45 degress hill",
   "repository": {
     "type": "git",
