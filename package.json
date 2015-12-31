@@ -8,8 +8,5 @@
   },
   "author": "Damian Martyniak",
   "license": "UNLICENSED",
-  "homepage": "https://bitbucket.org/rascada/slider#readme",
-  "dependencies": {
-    "hammerjs": "^2.0.4"
-  }
+  "homepage": "https://bitbucket.org/rascada/slider#readme"
 }
