@@ -8,5 +8,8 @@
   },
   "author": "Damian Martyniak",
   "license": "UNLICENSED",
-  "homepage": "https://bitbucket.org/rascada/slider#readme"
+  "homepage": "https://bitbucket.org/rascada/slider#readme",
+  "dependencies": {
+    "@sled/log": "0.0.1"
+  }
 }

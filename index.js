@@ -1,4 +1,4 @@
-import log from './log.js';
+import log from '@sled/log';
 
 export default class Slider {
 
