@@ -1,7 +1,8 @@
-import log from '@sled/log';
+'use strict';
 
-export default class Slider {
+let log = require('@sled/log');
 
+module.exports = class Slider {
   constructor($slider) {
     this.$domCore = $slider;
     this.domModules = {};
@@ -37,4 +38,4 @@ export default class Slider {
       else rej(new Error('missing module', this.id));
     });
   }
-}
+};
