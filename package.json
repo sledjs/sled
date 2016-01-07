@@ -1,6 +1,6 @@
 {
   "name": "sled",
-  "version": "0.1.2-beta",
+  "version": "0.1.3-beta",
   "description": "slide smooth like sled upon 45 degress hill",
   "repository": {
     "type": "git",
@@ -10,6 +10,6 @@
   "license": "UNLICENSED",
   "homepage": "https://bitbucket.org/rascada/slider#readme",
   "dependencies": {
-    "@sled/log": "^0.0.1"
+    "@sled/log": "^0.0.2"
   }
 }
