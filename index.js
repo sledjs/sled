@@ -4,12 +4,13 @@ let log = require('@sled/log');
 
 module.exports = class Slider {
   constructor($slider) {
-    this.$domCore = $slider;
+    this.$ = $slider;
     this.domModules = {};
     this.modules = {};
     this.id = $slider.id || 'slider';
 
-    this.loadDomModules(...this.$domCore.children);
+    log({ id: this.id }, `created`);
+    this.loadDomModules(...this.$.children);
   }
 
   module(name) {
@@ -25,8 +26,8 @@ module.exports = class Slider {
   }
 
   loadModules(...modules) {
-    log(`[${this.id}]`, 'load modules init');
-    if (!modules.length) log(`[${this.id}]`, '[modules]', '0 modules to load');
+    if (!modules.length)
+      log(`[${this.id}]`, '[modules]', '0 modules to load');
     else modules.forEach(Module => {
       log(`[${this.id}]`, '[modules]', 'loaded', Module.name);
       this.modules[Module.name.toLowerCase()] = new Module(this);
