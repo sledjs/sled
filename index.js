@@ -9,9 +9,18 @@ module.exports = class Slider {
     this.modules = {};
     this.id = $slider.id || 'slider';
 
-    [].forEach.call(this.$domCore.children, domModule => {
-      this.domModules[domModule.className] = domModule;
-      log(`[${this.id}]`, '[modules-dom]', `loaded ${domModule.className}`);
+    this.loadDomModules(...this.$domCore.children);
+  }
+
+  module(name) {
+    return new Promise((res, rej) => {
+      if (this.modules[name])
+        res({
+          $: this.domModules[name],
+          _: this.modules[name],
+        });
+      else
+        rej(new Error('missing module', name));
     });
   }
 
@@ -26,15 +35,10 @@ module.exports = class Slider {
     return new Promise(res => res(this));
   }
 
-  module(name) {
-    return new Promise((res, rej) => {
-      if (this.modules[name])
-        res({
-          $: this.domModules[name],
-          _: this.modules[name],
-        });
-      else
-        rej(new Error('missing module', name));
+  loadDomModules(...modules) {
+    modules.forEach(domModule => {
+      this.domModules[domModule.className] = domModule;
+      log(`[${this.id}]`, '[modules-dom]', `loaded ${domModule.className}`);
     });
   }
 };
