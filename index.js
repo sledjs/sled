@@ -19,11 +19,8 @@ module.exports = class Slider {
     log(`[${this.id}]`, 'load modules init');
     if (!modules.length) log(`[${this.id}]`, '[modules]', '0 modules to load');
     else modules.forEach(Module => {
-      let funcName = Module.toString().match(/^function\s*([^\s(]+)/)[1];
-      let moduleName = funcName.charAt(0).toLowerCase() + funcName.slice(1);
-
-      log(`[${this.id}]`, '[modules]', 'loaded', moduleName);
-      this.modules[moduleName] = new Module(this);
+      log(`[${this.id}]`, '[modules]', 'loaded', Module.name);
+      this.modules[Module.name.toLowerCase()] = new Module(this);
     });
 
     return new Promise(res => res(this));
