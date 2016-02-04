@@ -26,13 +26,15 @@ module.exports = class Slider {
     return new Promise(res => res(this));
   }
 
-  getModule(module, dom) {
-    let moduleCont = this.modules;
-    if (dom) moduleCont = this.domModules;
-
+  module(name) {
     return new Promise((res, rej) => {
-      if (moduleCont[module]) res(moduleCont[module]);
-      else rej(new Error('missing module', this.id));
+      if (this.modules[name])
+        res({
+          $: this.domModules[name],
+          _: this.modules[name],
+        });
+      else
+        rej(new Error('missing module', name));
     });
   }
 };
