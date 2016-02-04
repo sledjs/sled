@@ -1,6 +1,7 @@
 'use strict';
 
 let log = require('@sled/log');
+let slug = require('to-slug-case');
 
 module.exports = class Slider {
   constructor($slider) {
@@ -29,8 +30,9 @@ module.exports = class Slider {
     if (!modules.length)
       log(`[${this.id}]`, '[modules]', '0 modules to load');
     else modules.forEach(Module => {
-      log(`[${this.id}]`, '[modules]', 'loaded', Module.name);
-      this.modules[Module.name.toLowerCase()] = new Module(this);
+      let name = slug(Module.name);
+      log(`[${this.id}]`, '[modules]', 'loaded', name);
+      this.modules[name] = new Module(this);
     });
 
     return new Promise(res => res(this));

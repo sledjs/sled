@@ -10,6 +10,7 @@
   "license": "UNLICENSED",
   "homepage": "https://bitbucket.org/rascada/slider#readme",
   "dependencies": {
-    "@sled/log": "^0.0.2"
+    "@sled/log": "^0.0.2",
+    "to-slug-case": "^1.0.0"
   }
 }
