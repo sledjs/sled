@@ -14,16 +14,21 @@ module.exports = class Slider {
     this.loadDomModules(...this.$.children);
   }
 
-  module(name) {
-    return new Promise((res, rej) => {
-      if (this.modules[name])
-        res({
-          $: this.domModules[name],
-          _: this.modules[name],
-        });
-      else
-        rej(new Error('missing module', name));
-    });
+  module(name, cb) {
+    let bundle;
+    let err;
+
+    name = slug(name);
+
+    if (this.modules[name]) bundle = {
+        $: this.domModules[name] || null,
+        _: this.modules[name] || null,
+      };
+    else
+      err = new Error('missing module', name);
+
+    cb && cb(err, bundle);
+    return new Promise((res, rej) => bundle ? res(bundle) : rej(err));
   }
 
   loadModules(...modules) {
