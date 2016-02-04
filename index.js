@@ -29,10 +29,8 @@ module.exports = class Slider {
 
     name = slug(name);
 
-    if (this.modules[name]) bundle = {
-        $: this.domModules[name] || null,
-        _: this.modules[name] || null,
-      };
+    if (this.modules[name])
+      bundle = Object.assign(this.modules[name], { $: this.domModules[name] || null });
     else
       err = new Error('missing module', name);
 
