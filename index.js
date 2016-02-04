@@ -7,7 +7,7 @@ module.exports = class Slider {
     this.$domCore = $slider;
     this.domModules = {};
     this.modules = {};
-    this.id = $slider.id;
+    this.id = $slider.id || 'slider';
 
     [].forEach.call(this.$domCore.children, domModule => {
       this.domModules[domModule.className] = domModule;
