@@ -14,6 +14,15 @@ module.exports = class Slider {
     this.loadDomModules(...this.$.children);
   }
 
+  getModule(name, type) {
+    let module;
+
+    this.module(name, (er, bundle) =>
+      module = bundle[type == '$' ? type : '_']);
+
+    return module;
+  }
+
   module(name, cb) {
     let bundle;
     let err;
