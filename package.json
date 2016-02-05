@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git+ssh://git@bitbucket.org/rascada/slider.git"
   },
+  "scripts": {
+    "build": "webpack"
+  },
   "author": "Damian Martyniak",
   "license": "UNLICENSED",
   "homepage": "https://bitbucket.org/rascada/slider#readme",
@@ -13,5 +16,10 @@
     "@sled/core": "^1.2.2",
     "@sled/keys": "^1.1.0",
     "@sled/slides": "^0.3.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.2",
+    "webpack": "^1.12.13"
   }
 }
