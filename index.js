@@ -2,8 +2,8 @@
 
 let Core = require('@sled/core');
 let Slides = require('@sled/slides');
-let ArrowChanger = require('@sled/arrow-changer');
+let Keys = require('@sled/keys');
 
 module.exports = function($slider) {
-  return new Core($slider, Slides, ArrowChanger);
+  return new Core($slider, Slides, Keys);
 };
