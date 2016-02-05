@@ -1,6 +1,6 @@
 'use strict';
 
-let Core = require('@sled/core');
+let Core = require('babel!@sled/core');
 let Slides = require('@sled/slides');
 let Keys = require('@sled/keys');
 
