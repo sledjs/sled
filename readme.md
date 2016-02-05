@@ -48,6 +48,19 @@ tested with webpack
 <script>
   let $slider = document.querySelector('.sled');
 
-  new Sled($slider);
+  let slider = new Sled($slider);
 </script>
+```
+```js
+  let slides = slider.module('slides'); // slider.modules.slides
+
+slides.next();
+slides.prev();
+slides.next();
+slides.next();
+
+slides.changeTo(5); // slide to 5 slide
+
+# Also you're can change slides with arrow Keys.
+
 ```
