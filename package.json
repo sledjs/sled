@@ -11,6 +11,7 @@
   "homepage": "https://bitbucket.org/rascada/slider#readme",
   "dependencies": {
     "@sled/core": "^1.2.0",
-    "@sled/slides": "^0.2.0"
+    "@sled/slides": "^0.3.0",
+    "@sled/arrow-changer": "^1.0.0"
   }
 }
