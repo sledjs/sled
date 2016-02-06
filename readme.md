@@ -15,8 +15,10 @@ $ npm i @sled/$module_name
 * [keys](https://github.com/sledjs/keys)
 
 ##### additional
+* [touch](https://github.com/sledjs/touch)
 * [arrows](https://github.com/sledjs/arrows)
 * [dots](https://github.com/sledjs/dots)
+* [auto-slider](https://github.com/sledjs/auto-slider)
 
 # installation
 ## cdn
