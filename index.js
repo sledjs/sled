@@ -1,9 +1,9 @@
 'use strict';
 
-let Core = require('babel!@sled/core');
-let Slides = require('@sled/slides');
-let Keys = require('@sled/keys');
+import Core from '@sled/core';
+import Slides from '@sled/slides';
+import Keys from '@sled/keys';
 
-module.exports = function($slider) {
+export default function($slider) {
   return new Core($slider, Slides, Keys);
 };
