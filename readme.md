@@ -16,6 +16,7 @@ $ npm i @sled/$module_name
 
 ##### additional
 * [arrows](https://github.com/sledjs/arrows)
+* [dots](https://github.com/sledjs/dots)
 
 # installation
 ## cdn
