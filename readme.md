@@ -1,5 +1,13 @@
 # Sled
 Slide smooth like sled upon 45 degress hill.
+
+## modules 
+##### sled contains three modules
+
+* [core](https://github.com/sledjs/core)
+* [slides](https://github.com/sledjs/slides)
+* [keys](https://github.com/sledjs/keys)
+
 # installation
 ## cdn
 #### [sled.js](https://npmcdn.com/sled/lib/sled.js) and [sled.css](https://npmcdn.com/sled/lib/sled.css)
@@ -7,10 +15,10 @@ Slide smooth like sled upon 45 degress hill.
 ```html
 <link rel='stylesheet' href='https://npmcdn.com/sled/lib/sled.css'>
 <script src='https://npmcdn.com/sled/lib/sled.js'></script>
-<script>
-
+<script> 
 let slider = new Sled($slider);
 
+/* write here */ 
 </script>
 ```
 
@@ -51,16 +59,17 @@ tested with webpack
   let slider = new Sled($slider);
 </script>
 ```
+##### slides
 ```js
-  let slides = slider.module('slides'); // slider.modules.slides
+let slides = slider.module('slides'); // slider.modules.slides
 
 slides.next();
 slides.prev();
 slides.next();
 slides.next();
 
-slides.changeTo(5); // slide to 5 slide
+slides.changeTo(2); // slide to second slide
 
-# Also you're can change slides with arrow Keys.
+// Also you're can change slides with arrow Keys.
 
 ```
