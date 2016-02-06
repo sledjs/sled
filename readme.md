@@ -1,12 +1,21 @@
 # Sled
 Slide smooth like sled upon 45 degress hill.
 
-## modules 
-##### sled contains three modules
+## modules
+
+all modules are available in npm
+```sh
+$ npm i @sled/$module_name
+```
+
+##### sled contains three base modules
 
 * [core](https://github.com/sledjs/core)
 * [slides](https://github.com/sledjs/slides)
 * [keys](https://github.com/sledjs/keys)
+
+##### additional
+* [arrows](https://github.com/sledjs/arrows)
 
 # installation
 ## cdn
@@ -15,10 +24,10 @@ Slide smooth like sled upon 45 degress hill.
 ```html
 <link rel='stylesheet' href='https://npmcdn.com/sled/lib/sled.css'>
 <script src='https://npmcdn.com/sled/lib/sled.js'></script>
-<script> 
+<script>
 let slider = new Sled($slider);
 
-/* write here */ 
+/* write here */
 </script>
 ```
 
