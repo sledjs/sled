@@ -1,5 +1,13 @@
 # Sled
 Slide smooth like sled upon 45 degress hill.
+
+## modules 
+##### sled contains three modules
+
+* [core](https://github.com/sledjs/core)
+* [slides](https://github.com/sledjs/slides)
+* [keys](https://github.com/sledjs/keys)
+
 # installation
 ## cdn
 #### [sled.js](https://npmcdn.com/sled/lib/sled.js) and [sled.css](https://npmcdn.com/sled/lib/sled.css)
