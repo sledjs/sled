@@ -59,13 +59,14 @@
     </div>
   </div>
     <h2> Use arrow keys </h2>
+
   <script src='https://npmcdn.com/sled/lib/sled.js'> </script>
+  <script src='https://npmcdn.com/@sled/touch/lib/touch'> </script>
   <script>
     'use strict';
 
     let $slider = document.getElementById('slider');
-
-    let slider = new Sled($slider);
+    let slider = new Sled($slider).loadModules(Touch);
   </script>
 
   </body>
