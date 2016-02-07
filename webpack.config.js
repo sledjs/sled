@@ -1,12 +1,24 @@
 'use strict';
 
 let Extract = require('extract-text-webpack-plugin');
+let webpack = require('webpack');
 let path = require('path');
 
 module.exports = {
   entry: {
     sled: './index',
   },
+
+  plugins: [
+      new webpack.optimize.UglifyJsPlugin({
+        compress:{
+          warnings: false,
+        },
+      }),
+      new Extract('sled.css', {
+        allChunks: true,
+      }),
+  ],
 
   output: {
     library: 'Sled',
@@ -32,9 +44,3 @@ module.exports = {
     ],
   },
 };
-
-module.exports.plugins = [
-  new Extract('sled.css', {
-    allChunks: true,
-  }),
-];
