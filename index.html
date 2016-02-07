@@ -14,7 +14,7 @@
 
     <style>
       body {
-        background: teal;
+        background: #eee;
         height: 100vh;
         margin: 0;
         display: flex;
@@ -24,26 +24,36 @@
       }
 
       h1, h2 {
-        color: #fff;
+        margin: .2em 0;
+        color: rgb(0, 127, 167);
       }
 
       .sled {
-        width: 50%;
-        height: 50%;
-        border: solid #fff;
+        width: 50em;
+        height: 25em;
+        border: solid rgb(0, 127, 167);
         border-width: 0 .2em;
+      }
+
+      .sled .dots .dotsWrapper .dot.active {
+        background: rgb(0, 127, 167);
+      }
+
+      .sled .dots .dotsWrapper .dot {
+        width: 1.5em;
+        height: 1.5em;
       }
 
       .img {
         background: #fff;
-        width: 80%;
+        width: 40%;
         height: 80%;
       }
 
       .blue {
-        background: #09f;
-        width: 95%;
-        height: 95%;
+        background: rgb(0, 127, 167);
+        width: 90%;
+        height: 90%;
       }
     </style>
   </head>
@@ -60,7 +70,9 @@
     </div>
     <div class='dots'></div>
   </div>
-    <h2> Use arrow keys </h2>
+  <h2> Use arrow keys </h2>
+  <h2> swipe or drag </h2>
+  <h2> click dots </h2>
 
   <script src='https://npmcdn.com/sled/lib/sled.js'> </script>
   <script src='https://npmcdn.com/@sled/touch/lib/touch'> </script>
