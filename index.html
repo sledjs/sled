@@ -10,6 +10,8 @@
     <![endif]-->
     <link rel='stylesheet' href='https://npmcdn.com/sled/lib/sled.css'>
     <link rel='stylesheet' href='https://npmcdn.com/@sled/dots/lib/dots.css'>
+    <link rel='stylesheet' href='https://npmcdn.com/@sled/arrows/lib/arrows.css'>
+
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
     <style>
@@ -60,6 +62,11 @@
   <body>
     <h1> Sled </h1>
     <div class='sled' id='slider'>
+    <div class='arrows'>
+      <div class="arrow"></div>
+      <div class="arrow"></div>
+    </div>
+    <div class='dots'></div>
     <div class='slides simple'>
       <div class='slide'> <span class='img'></span> </div>
       <div class='slide'> <span class='img blue'></span> </div>
@@ -68,20 +75,21 @@
       <div class='slide'> <span class='img '></span> </div>
       <div class='slide'> <span class='img blue'></span> </div>
     </div>
-    <div class='dots'></div>
   </div>
   <h2> Use arrow keys </h2>
   <h2> swipe or drag </h2>
   <h2> click dots </h2>
 
-  <script src='https://npmcdn.com/sled/lib/sled.js'> </script>
+  <script src='https://npmcdn.com/sled/lib/sled'> </script>
   <script src='https://npmcdn.com/@sled/touch/lib/touch'> </script>
   <script src='https://npmcdn.com/@sled/dots/lib/dots'> </script>
+  <script src='https://npmcdn.com/@sled/arrows/lib/arrows'> </script>
+
   <script>
     'use strict';
 
     let $slider = document.getElementById('slider');
-    let slider = new Sled($slider).loadModules(Touch, Dots);
+    let slider = new Sled($slider).loadModules(Touch, Dots, Arrows);
   </script>
 
   </body>
