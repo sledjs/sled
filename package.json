@@ -7,7 +7,7 @@
     "url": "git+ssh://git@bitbucket.org/rascada/slider.git"
   },
   "scripts": {
-    "build": "webpack"
+    "start": "webpack"
   },
   "author": "Damian Martyniak",
   "license": "UNLICENSED",
