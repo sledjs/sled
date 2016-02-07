@@ -1,6 +1,7 @@
 'use strict';
 
 let Extract = require('extract-text-webpack-plugin');
+let path = require('path');
 
 module.exports = {
   entry: {
@@ -16,6 +17,11 @@ module.exports = {
 
   module: {
     loaders: [
+      {
+        test: /\.js$/,
+        include: [path.resolve(__dirname, 'node_modules/@sled')],
+        loader: 'babel',
+      },
       {
         test: /\.styl$/i,
         loader: Extract.extract('style', 'css!stylus'),
