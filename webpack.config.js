@@ -5,13 +5,13 @@ let path = require('path');
 
 module.exports = {
   entry: {
-    library: 'babel!./index.js',
+    sled: './index',
   },
 
   output: {
     library: 'Sled',
     libraryTarget: 'window',
-    filename: 'sled.js',
+    filename: '[name].js',
     path: 'lib',
   },
 
@@ -19,7 +19,10 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        include: [path.resolve(__dirname, 'node_modules/@sled')],
+        include: [
+          path.resolve(__dirname, 'node_modules/@sled'),
+          path.resolve(__dirname, './index'),
+        ],
         loader: 'babel',
       },
       {
