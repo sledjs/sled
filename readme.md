@@ -22,11 +22,11 @@ $ npm i @sled/$module_name
 
 # installation
 ## cdn
-#### [sled.js](https://npmcdn.com/sled/lib/sled.js) and [sled.css](https://npmcdn.com/sled/lib/sled.css)
+#### [sled.js](https://unpkg.com/sled/lib/sled.js) and [sled.css](https://unpkg.com/sled/lib/sled.css)
 
 ```html
-<link rel='stylesheet' href='https://npmcdn.com/sled/lib/sled.css'>
-<script src='https://npmcdn.com/sled/lib/sled.js'></script>
+<link rel='stylesheet' href='https://unpkg.com/sled/lib/sled.css'>
+<script src='https://unpkg.com/sled/lib/sled.js'></script>
 <script>
 let slider = new Sled($slider);
 
